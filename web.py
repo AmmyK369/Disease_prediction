@@ -8,9 +8,12 @@ st.set_page_config(page_title="Prediction of Disease Outbreaks",
                    layout='wide',
                    page_icon='doctor')
 
-diabetes_model=pickle.load(open(r"training_models\diabetes_model.sav","rb"))
-parkinsons_model=pickle.load(open(r"training_models\parkinsons_model.sav","rb"))
-heart_model=pickle.load(open(r"training_models\heart_model.sav","rb"))
+diabetes_model=pickle.load(open(os.path.join("training_models", "diabetes_model.sav"), "rb"))
+
+parkinsons_model=pickle.load(open(os.path.join("training_models", "parkinsons_model.sav"), "rb"))
+
+heart_model=pickle.load(open(os.path.join("training_models", "heart_model.sav"), "rb"))
+
 
 
 
@@ -55,8 +58,8 @@ if selected =='Diabetes Prediction':
         except ValueError:
           st.error("Please enter valid numbers only.")
 
-        diabetes_scaler = pickle.load(open(r"training_models\diabetes_scaler.sav", 'rb'))  
-
+        diabetes_scaler = pickle.load(open(os.path.join("training_models", "diabetes_scaler.sav"), "rb"))
+        
         scaled_input = diabetes_scaler.transform([user_input])
 
         diab_prediction = diabetes_model.predict(scaled_input)
@@ -130,7 +133,8 @@ if selected == 'Heart Disease Prediction':
         except ValueError:
           st.error("Please enter valid numbers only.")
           
-        heart_scaler = pickle.load(open(r"training_models\heart_scaler.sav", 'rb'))  
+        heart_scaler = pickle.load(open(os.path.join("training_models", "heart_scaler.sav"), "rb")) 
+        
 
         scaled_input = heart_scaler.transform([user_input])
 
@@ -233,7 +237,8 @@ if selected == "Parkinsons Prediction":
         except ValueError:
           st.error("Please enter valid numbers only.")
           
-        parkinsons_scaler = pickle.load(open(r"training_models\parkinsons_scaler.sav", 'rb'))  
+        parkinsons_scaler = pickle.load(open(os.path.join("training_models", "parkinsons_scaler.sav"), "rb"))
+        
 
         scaled_input =  parkinsons_scaler.transform([user_input])
 
